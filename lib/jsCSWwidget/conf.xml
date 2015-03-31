@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!--
+/**
+ * @desc    CSW web widget configuration file. 
+ * @author  Wenwen Li <wenwen@asu.edu>
+ * @author  Sheng Wu <wushengcq@gmail.com>
+ * @organ   GeoDa Center for Geospatial Analysis and Computation
+ *          School of Geographical Sciences and Urban Planning
+ *          Arizona State University
+ * @version 1.0.0
+ * @license https://github.com/usgin/jsCSWwidget/blob/master/LICENSE
+ */
+-->
+<usgin>
+	<jsCSWwidget>
+		<owner>USGIN</owner>
+		<title>CSW Web Client</title>
+		<proxy>/jsCSWwidget/proxy</proxy>
+		<pageSize>20</pageSize>
+		<services>
+			<csw>http://catalog.usgin.org/geoportal/csw</csw>
+			<csw>http://polar.geodacenter.org:9080/geonetwork/srv/eng/csw</csw>
+		</services>
+	</jsCSWwidget>
+</usgin>
