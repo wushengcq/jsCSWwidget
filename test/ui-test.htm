@@ -1,0 +1,48 @@
+<html>
+	<head>
+		<title>USGIN jsCSWwidget Test</title>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<link rel="stylesheet" type="text/css" href="../lib/jsCSWwidget/css/default.css"></link>
+		<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>		
+		<script type="text/javascript" src="../lib/jquery/jquery-2.1.3.js"></script>
+		<script type="text/javascript" src="../lib/jsCSWwidget/js/usgin.js"></script>
+		<script type="text/javascript" src="../lib/jsCSWwidget/js/logger.js"></script>
+		<script type="text/javascript" src="../lib/jsCSWwidget/js/util.js"></script>
+		<script type="text/javascript" src="../lib/jsCSWwidget/js/ajax.js"></script>
+		<script type="text/javascript" src="../lib/jsCSWwidget/js/xml.js"></script>
+		<script type="text/javascript" src="../lib/jsCSWwidget/js/csw.js"></script>
+		<script type="text/javascript" src="../lib/jsCSWwidget/js/widget.js"></script>
+	
+		<style>
+			#csw-widget {
+				width: 450px; height:550px; top:50px; left:400px;
+			}
+		</style>
+	</head>
+	<body>
+		<ul style="line-height:30px">
+			<li><input type="button" onclick="closeCSWwidget()" value="Close Widget">
+			<li><input type="button" onclick="showCSWwidget()" value="Show Widget">
+			<li><input type="button" onclick="showCSWwidgetAt()" value="Show Widget at position x=800, y=20">
+			<li>Drag the widget title bar to move it.
+		</ul>
+		<div id="csw-widget"></div>	
+	</body>
+
+	<script type="text/javascript">
+		var csw = new usgin.CSWwidget("csw-widget", "http://localhost:8080/jsCSWwidget/lib/jsCSWwidget/conf.xml");
+	
+		function showCSWwidget() {
+			csw.show();
+ 		}
+		
+		function showCSWwidgetAt() {
+			csw.showAt(800, 20);
+ 		}
+		
+		function closeCSWwidget() {
+			csw.close();
+ 		}
+	</script>
+</html>
