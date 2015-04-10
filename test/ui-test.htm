@@ -4,40 +4,57 @@
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 		<link rel="stylesheet" type="text/css" href="../lib/jsCSWwidget/css/default.css"></link>
 		<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
-		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>		
+		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>	
+		<!--
+		-->
+		<script type="text/javascript" src="../lib/jsCSWwidget/js/usgin.csw.widget.min.js"></script>
+		<!-- 	
 		<script type="text/javascript" src="../lib/jsCSWwidget/js/usgin.js"></script>
 		<script type="text/javascript" src="../lib/jsCSWwidget/js/logger.js"></script>
 		<script type="text/javascript" src="../lib/jsCSWwidget/js/util.js"></script>
 		<script type="text/javascript" src="../lib/jsCSWwidget/js/ajax.js"></script>
 		<script type="text/javascript" src="../lib/jsCSWwidget/js/xml.js"></script>
 		<script type="text/javascript" src="../lib/jsCSWwidget/js/csw.js"></script>
+		<script type="text/javascript" src="../lib/jsCSWwidget/js/wms.js"></script>
+		<script type="text/javascript" src="../lib/jsCSWwidget/js/wfs.js"></script>
 		<script type="text/javascript" src="../lib/jsCSWwidget/js/widget.js"></script>
-	
+		-->
 		<style>
 			#csw-widget {
-				width: 450px; height:550px; top:50px; left:400px;
+				width: 450px; height:550px; top:50px; left:50%;
 			}
+	
+			#selected-record-meta {
+				overflow-x: scroll;
+				width:40%;height:50%;background-color:#ccc;padding:10px;font-size:0.8em
+			}
+			
 		</style>
 	</head>
 	<body>
 		<ul style="line-height:30px">
 			<li><input type="button" onclick="closeCSWwidget()" value="Close Widget">
 			<li><input type="button" onclick="showCSWwidget()" value="Show Widget">
-			<li><input type="button" onclick="showCSWwidgetAt()" value="Show Widget at position x=800, y=20">
+			<li><input type="button" onclick="showCSWwidgetAt()" value="Show Widget at position x=900, y=150">
 			<li>Drag the widget title bar to move it.
+			<li>WMS/WFS metadata of selected record<div id="selected-record-meta">	No record selected</div>
 		</ul>
 		<div id="csw-widget"></div>	
 	</body>
 
 	<script type="text/javascript">
 		var csw = new usgin.CSWwidget("csw-widget", "../lib/jsCSWwidget/conf.xml");
+		
+		csw.addRecordSelectedListener( function(result) {
+			$("#selected-record-meta").html(JSON.stringify(result));
+		});
 	
 		function showCSWwidget() {
 			csw.show();
  		}
 		
 		function showCSWwidgetAt() {
-			csw.showAt(800, 20);
+			csw.showAt(900, 150);
  		}
 		
 		function closeCSWwidget() {

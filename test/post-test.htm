@@ -1,0 +1,69 @@
+<html>
+<head>
+	<title>Post Test</title>
+</head>
+<body>
+	<h3>GetCapabilities [ http://www.geothermaldata.org/csw ]</h3>
+	<form action="http://www.geothermaldata.org/csw" method="GET" target="_blank">
+		request: <input type='text' name='request' value='GetCapabilities'><br>
+		service: <input type='text' name='service' value='CSW'><br>
+		acceptVersion: <input type='text' name='acceptVersions' value='2.0.2'><br>
+		<input type='submit' name='submit'>
+	</form>
+	
+	<h3>GetRecords  [ http://www.geothermaldata.org/csw ]</h3>
+	<form action="http://www.geothermaldata.org/csw" method="GET" target="_blank">
+		Service: <input type='text' name='service' value='CSW'><br>
+		Version: <input type='text' name='version' value='2.0.2' ><br>
+		Request: <input type='text' name='Request' value='GetRecords' ><br>
+		typeNames: <input type='text' name='typeNames' value='csw:Record' ><br>
+		ConstraintLanguage: <input type='text' name='CONSTRAINTLANGUAGE' value='FILTER' ><br>
+		ElementSetName: <input type='text' name='ElementSetName' value='full' ><br>
+		Constraint: <textarea name='Constraint' value='' style='width:600px;height:60px'><ogc:Filter xmlns:ogc='http://www.opengis.net/ogc'><ogc:PropertyIsLike wildCard='%' singleChar='_' escape='\\'><ogc:PropertyName>title</ogc:PropertyName><ogc:Literal>sss</ogc:Literal></ogc:PropertyIsLike></ogc:Filter></textarea><br>
+		Constraint_Language_Version: <input type='text' name='Constraint_Language_Version' value='1.1.0' ><br>
+		resultType: <input type='text' name='resultType' value='results' ><br>
+		outputFormat: <input type='text' name='outputFormat' value='application/xml' ><br>
+		maxRecords: <input type='text' name='maxRecords' value='20' ><br>
+		<input type='submit' name='submit'>
+	</form>
+
+	<h3>GetRecords  [ http://polar.geodacenter.org:9080/geonetwork/srv/eng/csw ]</h3>
+	<form action="http://catalog.usgin.org/geoportal/csw" method="GET" target="_blank">
+		Service: <input type='text' name='Service' value='CSW'><br>
+		Version: <input type='text' name='Version' value='2.0.2' ><br>
+		Request: <input type='text' name='Request' value='GetRecords' ><br>
+		typeNames: <input type='text' name='typeNames' value='CSW:Record' ><br>
+		ConstraintLanguage: <input type='text' name='ConstraintLanguage' value='Filter' ><br>
+		Constraint: <textarea name='Constraint' value='' style='width:600px;height:60px'>
+<Filter><PropertyIsLike wildCard="%" singleChar="_" escape="\\"><PropertyName>title</PropertyName><Literal>Location%</Literal></PropertyIsLike></Filter>
+<Filter><PropertyIsEqualTo><PropertyName>Title</PropertyName><Literal>Location of Bike Shops</Literal></PropertyIsEqualTo></Filter>
+		</textarea><br>
+		Constraint_Language_Version: <input type='text' name='Constraint_Language_Version' value='1.1.0' ><br>
+		resultType: <input type='text' name='resultType' value='results' ><br>
+		outputFormat: <input type='text' name='outputFormat' value='application/xml' ><br>
+		maxRecords: <input type='text' name='maxRecords' value='20' ><br>
+		<input type='submit' name='submit'>
+	</form>
+
+	<h3>GetRecords  [ http://polar.geodacenter.org:9080/geonetwork/srv/eng/csw ]</h3>
+	http://polar.geodacenter.org:9080/geonetwork/srv/eng/csw
+	<form action="http://polar.geodacenter.org:9080/geonetwork/srv/eng/csw" method="POST" target="_blank" enctype="application/xml">
+		<textarea type='text' name='request' rows='20' cols='100'>
+<?xml version="1.0" encoding="UTF-8"?>
+<csw:GetRecords xmlns:csw="http://www.opengis.net/cat/csw/2.0.2" xmlns:ogc="http://www.opengis.net/ogc" service="CSW" version="2.0.2">
+  <csw:Query typeNames="csw:Record">
+    <csw:Constraint version="1.1.0">
+      <ogc:Filter>
+        <ogc:PropertyIsLike wildCard="%" singleChar="_" escape="\\">
+          <ogc:PropertyName>AnyText</ogc:PropertyName>
+          <ogc:Literal>%snow%</ogc:Literal>
+        </ogc:PropertyIsLike>
+      </ogc:Filter>
+    </csw:Constraint>
+  </csw:Query>
+</csw:GetRecords>
+		</textarea>	
+		<input type="submit" value="submit">
+	</form>
+</body>
+</html>

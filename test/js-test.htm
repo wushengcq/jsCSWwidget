@@ -1,0 +1,45 @@
+<html>
+	<head>
+		<title></title>
+		<script type="text/javascript">
+		Animal = function(){}
+		Animal.prototype = {
+			name: 'animal',
+			weight: 0,
+			eat: function() {
+				alert("Animal is eating " + this.food());
+			},
+			food: function() {
+				return "food";
+			}
+		}	
+		
+		function Mammal() {
+			this.name = "mammal";
+		}
+		Mammal.prototype = new Animal();
+
+		function Horse(height, weight) {
+			this.name = "horse";
+			this.height = height;
+			this.weight = weight;
+			console.log(this+" ");
+		}
+		Horse.prototype = new Mammal();
+		Horse.prototype.food = function() {
+			return "grass";
+		}
+		/*Horse.prototype.eat = function() {
+			alert("Hourse is eating " + this.food());
+		}*/	
+
+		function objTest() {
+			var h = new Horse(100, 300);
+			h.eat();
+		}
+		</script>
+	</head>
+	<body>
+		<input type="button" value="test"  onclick="objTest()">	
+	</body>
+</html>

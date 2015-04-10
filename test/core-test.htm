@@ -1,0 +1,195 @@
+<html>
+	<head>
+		<title>Tester Bed</title>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <link rel="stylesheet" type="text/css" href="../lib/jsCSWwidget/css/default.css"></link>
+        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>        
+        <script type="text/javascript" src="../lib/jsCSWwidget/js/usgin.js"></script>
+        <script type="text/javascript" src="../lib/jsCSWwidget/js/logger.js"></script>
+        <script type="text/javascript" src="../lib/jsCSWwidget/js/util.js"></script>
+        <script type="text/javascript" src="../lib/jsCSWwidget/js/ajax.js"></script>
+        <script type="text/javascript" src="../lib/jsCSWwidget/js/xml.js"></script>
+        <script type="text/javascript" src="../lib/jsCSWwidget/js/csw.js"></script>
+        <script type="text/javascript" src="../lib/jsCSWwidget/js/widget.js"></script>
+	</head>
+	<body>
+		<script type="text/javascript">
+			function splitTest() {
+				var s = "ows:OperationMetadatas";
+				console.log(s.split(":"));
+				console.log(s.split(":").length);
+				s = "OperationMetadatas";
+				console.log(s.split(":"));
+				console.log(s.split(":").length);
+				var s = "";
+				console.log(s.split(":"));
+				console.log(s.split(":").length);
+				var s = null;
+				console.log(typeof a === 'undefined')
+				console.log(typeof (1,2,3))
+				console.log( (s === null)? "null" : s.split(":"));
+			}
+		</script>
+		<input type="button" value="split-tester" onclick='splitTest()'/>
+
+		<p>
+		<script type="text/javascript">
+			var logger = new usgin.Logger(usgin.Logger.LEVELS.DEBUG);
+			
+			function loggerTest() {
+				logger.error("logger test error");	
+				logger.warn("logger test warn");	
+				logger.info("logger test info");	
+				logger.debug("logger test debug");	
+			}
+		</script>
+		<input type="button" value="Logger - logging" onclick='loggerTest()'/>
+
+		<p>
+		<script type="text/javascript">
+			var util = usgin.Util;
+			function util1() {
+				logger.debug(util.isFunction(loggerTest));
+			}
+			function util2() {
+				var a="string",b=2;
+				var c, d;
+				logger.debug(util.validVar([a,b]));
+				logger.debug(util.validVar([c,d]));
+				logger.debug(util.validVar(c));
+				logger.debug(util.validVar(e));
+			}
+			function util3() {
+				logger.debug(util.getBrowserInfo());
+			}
+			function util4() {
+				logger.debug(util.toType(loggerTest));
+				logger.debug(util.toType([1,2,3]));
+				logger.debug(util.toType("string"));
+				logger.debug(util.toType(100));
+			}
+		</script>
+		<input type="button" value="Util - isFunction()" onclick='util1()'/>
+		<input type="button" value="Util - validVar()" onclick='util2()'/>
+		<input type="button" value="Util - getBrowserInfo()" onclick='util3()'/>
+		<input type="button" value="Util - toType()" onclick='util4()'/>
+		
+		<p>
+		<script type="text/javascript">
+			var host = usgin.Util.getBrowserInfo().name == 'MSIE' ? "http://10.0.2.2:8080" : "http://localhost:8080";
+
+			var url = host + "/jsCSWwidget/proxy";
+			var enable_cache = false;
+			var params = {
+				endpoint:'http://www.geothermaldata.org/csw',
+				request: 'GetCapabilities',
+				Service: 'CSW',
+				Version: '2.0.2'
+			};
+
+			function ajaxGet() {
+				var ajax = new usgin.Ajax(url, enable_cache, params);
+				ajax.get(function(msg) {
+					logger.debug(msg);
+				}, function(msg) {
+					logger.debug(msg);
+				});
+			}
+			
+			function ajaxPost() {
+				var ajax = new usgin.Ajax(url, enable_cache, params);
+				ajax.post(function(msg) { 
+					logger.debug(msg);
+				}, function(msg) {
+					logger.debug(msg);
+				});
+			}	
+		</script>	
+		<input type="button" value="Ajax - GET" onclick='ajaxGet()'/>
+		<input type="button" value="Ajax - POST" onclick='ajaxPost()'/>
+	
+		<p>
+		<script type="text/javascript">
+			var url = host + "/jsCSWwidget/proxy";
+			var enable_cache = false;
+			var params = {
+				endpoint:'http://www.geothermaldata.org/csw',
+				request: 'GetCapabilities',
+				Service: 'CSW',
+				Version: '2.0.2'
+			};
+
+			var namespaces = {
+			    'csw': 'http://www.opengis.net/cat/csw/2.0.2',
+			    'ogc': 'http://www.opengis.net/ogc',
+			    'ows': 'http://www.opengis.net/ows',
+			    'xlink': 'http://www.w3.org/1999/xlink'
+			}
+
+			function getNodesByTag() {
+				var ajax = new usgin.Ajax(url, enable_cache, params);
+				ajax.get(function(xml) {
+					var parser = usgin.Xml.getXmlParser(usgin.Util.getBrowserInfo(), namespaces);
+					var tag = parser.getNodeByTag(xml, 'ows:OperationsMetadata');
+					logger.debug(parser.getNamespaces());
+					logger.debug(tag);	
+				}, function(msg) {logger.debug(msg);});
+			}
+			
+			function getNodesByAttr() {
+				var ajax = new usgin.Ajax(url, enable_cache, params);
+				ajax.get(function(xml) {
+					var parser = usgin.Xml.getXmlParser(usgin.Util.getBrowserInfo(), namespaces);
+					var op = parser.getNodeByAttr(xml,'ows:OperationsMetadata/ows:Operation','name','GetRecords');
+					logger.debug(op);	
+				}, function(msg) {logger.debug(msg);});
+			}
+	
+		</script>	
+		<input type="button" value="Xml - getNodesByTag()" onclick='getNodesByTag()'/>
+		<input type="button" value="Xml - getNodesByAttr()" onclick='getNodesByAttr()'/>
+
+		<p>
+		<script type="text/javascript">
+			var csw = null;
+			
+			function getCapabilities() {
+				if(csw == null) {
+					var url = "http://catalog.usgin.org/geoportal/csw";
+					var proxy = "http://localhost:8080/jsCSWwidget/proxy";
+					csw = new usgin.CSW(url, proxy);
+					csw.init(function(xml){
+						logger.debug("CSW initialized");
+						logger.debug(xml);
+					});
+				}
+			}
+
+			function getVersion() {
+				logger.debug(csw.getVersion());
+			}
+			
+			function getRecords() {
+				csw.getRecords('WMS', 'AnyText', null, 1, function(xml) {
+					logger.debug(xml);
+				}, function(msg) {
+					logger.error(msg);
+				});
+			}
+
+			function getRecordById() {
+				csw.getRecordById('http://basemap.nationalmap.gov/arcgis/services/TNM_Contours/MapServer/WMSServer?request=GetCapabilities&service=WMS', function(xml){
+					logger.debug(xml);
+				}, function(msg){
+					logger.error(msg);
+				});
+			}
+		</script>
+		<input type="button" value="CSW -  getCapabilities()" onclick='getCapabilities()'/>
+		<input type="button" value="CSW - getVersion()" onclick='getVersion()'/>
+		<input type="button" value="CSW - getRecords()" onclick='getRecords()'/>
+		<input type="button" value="CSW - getRecordById()" onclick='getRecordById()'/>
+			
+	</body>
+</html>
