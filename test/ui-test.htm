@@ -5,9 +5,6 @@
 		<link rel="stylesheet" type="text/css" href="../lib/jsCSWwidget/css/default.css"></link>
 		<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
 		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>	
-		<!--
-		-->
-		<script type="text/javascript" src="../lib/jsCSWwidget/js/usgin.csw.widget.min.js"></script>
 		<!-- 	
 		<script type="text/javascript" src="../lib/jsCSWwidget/js/usgin.js"></script>
 		<script type="text/javascript" src="../lib/jsCSWwidget/js/logger.js"></script>
@@ -19,6 +16,8 @@
 		<script type="text/javascript" src="../lib/jsCSWwidget/js/wfs.js"></script>
 		<script type="text/javascript" src="../lib/jsCSWwidget/js/widget.js"></script>
 		-->
+		<script type="text/javascript" src="../lib/jsCSWwidget/js/usgin.csw.widget.min.js"></script>
+		
 		<style>
 			#csw-widget {
 				width: 450px; height:550px; top:50px; left:50%;
@@ -36,6 +35,8 @@
 			<li><input type="button" onclick="closeCSWwidget()" value="Close Widget">
 			<li><input type="button" onclick="showCSWwidget()" value="Show Widget">
 			<li><input type="button" onclick="showCSWwidgetAt()" value="Show Widget at position x=900, y=150">
+			<li><input type="button" onclick="switchStyle('light.css')" value="Change widget to light style">
+			<li><input type="button" onclick="switchStyle('default.css')" value="Change widget to dark style">
 			<li>Drag the widget title bar to move it.
 			<li>WMS/WFS metadata of selected record<div id="selected-record-meta">	No record selected</div>
 		</ul>
@@ -45,8 +46,12 @@
 	<script type="text/javascript">
 		var csw = new usgin.CSWwidget("csw-widget", "../lib/jsCSWwidget/conf.xml");
 		
-		csw.addRecordSelectedListener( function(result) {
+		csw.addRecordSelectedHandler( function(result) {
 			$("#selected-record-meta").html(JSON.stringify(result));
+		});
+
+		csw.addRecordChosenHandler( function(result) {
+			alert(JSON.stringify(result));
 		});
 	
 		function showCSWwidget() {
@@ -60,5 +65,27 @@
 		function closeCSWwidget() {
 			csw.close();
  		}
+
+		function switchStyle(css_name) {
+			var styleSheets = document.styleSheets;
+			var found = false;
+			for (var i = 0; i < styleSheets.length; i++) {
+				var href = styleSheets[i].href + "";
+				if (href.indexOf("jsCSWwidget/css") < 0) {
+					continue;
+				}
+						
+			    if (href.indexOf(css_name) < 0) {
+		    	    styleSheets[i].disabled = true;
+		    	} else {
+		    	    styleSheets[i].disabled = false;
+					found = true;
+				}
+			}
+			if (!found) {
+     			$("head").append("<link rel='stylesheet' type='text/css' href='../lib/jsCSWwidget/css/" + css_name + "'>"); 
+			}
+		}
+
 	</script>
 </html>

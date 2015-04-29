@@ -8,28 +8,28 @@
  * @version 1.0.0
  * @license https://github.com/usgin/jsCSWwidget/blob/master/LICENSE
  */
-.csw-panel {background:rgba(42,42,42,0.5);padding:10px 10px;border:10px;border-radius:7px;position:absolute;font-size:14px;color:#eee;font-family:"Helvetica Neue",Arial,Helvetica,sans-serif;}
+.csw-panel {background:rgba(180,180,180,0.5);padding:10px 10px;border:10px;border-radius:7px;position:absolute;font-size:14px;color:#333;font-family:"Helvetica Neue",Arial,Helvetica,sans-serif;}
 .csw-table {border-collapse:collapse;border:0px solid #333;border-radius:4px;height:100%;width:100%;table-layout:fixed;}
-.csw-table tr {background:rgba(70, 70, 70, 0.61);border-radius:4px;}
-.csw-table td {color:#ffffff;font-size:0.9em;text-align:left;padding-left:10px;padding-top:4px;padding-right:10px}
-.csw-table th {color:#ffffff;font-size:0.9em;text-align:left;padding-left:10px;padding-top:4px;padding-right:10px}
-.csw-table th.title {background:rgba(42, 42, 42, 0.6);font-size:1em;padding:8px}
+.csw-table tr {background:rgba(250, 250, 250, 1);border-radius:4px;}
+.csw-table td {color:#333;font-size:0.9em;text-align:left;padding-left:10px;padding-top:4px;padding-right:10px}
+.csw-table th {color:#333;font-size:0.9em;text-align:left;padding-left:10px;padding-top:4px;padding-right:10px}
+.csw-table th.title {background:rgba(200, 200, 200, 0.6);font-size:1em;padding:8px}
 .csw-org {float:left;font-weight:normal;font-size:0.7em;}
 .csw-titlebar {float:left;text-align:center;width:90%}
 .csw-cross {cursor:pointer;width:16px;float:right;}
 .csw-linkbutton {cursor:pointer;padding-right:8px}
 .csw-linkbutton:hover {color:#06989a;font-weight:bold}
-.csw-input {width:100%;padding:3px;border:none;border-bottom:solid 1px #c9c9c9;background-color:#eee}
-.csw-bbox-input {width:4em;padding:0px;border:none;border-bottom:solid 1px #c9c9c9;background-color:#eee}
-.csw-bbox-clear {cursor:pointer;color:#ddd;padding-left:0.5em}
-.csw-select {border:0 none;padding:2px;width:100%;cursor:pointer;background-color:#eee}
-.csw-check {border:solid 1px;background:#eee;cursor:pointer;vertical-align:middle}
-.csw-button {border-top:solid 1px #dcdcdc;border-left:solid 1px #dcdcdc;border-right:solid 1px #555555;border-bottom:solid 1px #555555;width:100%;cursor:pointer;padding:3px;font-weight:bold;background-color:#eee}
+.csw-input {width:100%;padding:3px;}
+.csw-bbox-input {width:4em;padding:0px;}
+.csw-bbox-clear {cursor:pointer;color:#333;padding-left:0.5em}
+.csw-select {padding:2px;width:100%;cursor:pointer;}
+.csw-check {border:solid 1px;cursor:pointer;vertical-align:middle}
+.csw-button {width:100%;cursor:pointer;padding:3px;font-weight:bold;}
 .csw-pager {float:right;font-size:0.9em;font-weight:normal;}
-.csw-pager-total {font-size:0.9em;font-weight:normal;color:#ccc;padding-right:1.1em}
-.csw-infoboard-error {color:yellow}
-.csw-infoboard-box {width:100%;height:100%;border:1px solid #555555;background:rgba(70,70,70,0.2);}
-.csw-infoboard-type {font-size:0.8em;color:#eee;font-weight:normal}
+.csw-pager-total {font-size:0.9em;font-weight:normal;padding-right:1.1em}
+.csw-infoboard-error {color:red}
+.csw-infoboard-box {width:100%;height:100%;border:1px solid #999;}
+.csw-infoboard-type {font-size:0.8em;color:#555;font-weight:normal}
 .csw-infoboard-content {width:100%;height:8em;color;font-size:0.9em;overflow:auto;padding:4px;color:#a1ec21;
 	word-wrap: break-word;
 	white-space: pre-wrap;      /* CSS3 */   
@@ -37,12 +37,12 @@
 	white-space: -o-pre-wrap;   /* Opera 7 */    
 }
 .csw-infoboard-btn {float:right;padding-left:0.5em;vertical-align:bottom;padding-top:3px;color:#999}
-.csw-infoboard-theme-abstract {color:#a1ec21}
-.csw-infoboard-theme-subjects {color:#f8ce0d}
-.csw-infoboard-theme-spatial {color:#2bece5}
+.csw-infoboard-theme-abstract {color:#333}
+.csw-infoboard-theme-subjects {color:#333}
+.csw-infoboard-theme-spatial {color:#333}
 
 .csw-btn-disabled {cursor:auto;color:#999}
-.csw-btn-enabled {cursor:pointer;color:#fdfdfd}
+.csw-btn-enabled {cursor:pointer;color:#444}
 .csw-spinner {color:#2bece5;margin-top:-7px}
 .csw-hr {
     border: 0;
