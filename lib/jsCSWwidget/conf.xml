@@ -18,6 +18,7 @@
 		<proxy>/jsCSWwidget/proxy</proxy>
 		<pageSize>20</pageSize>
 		<services>
+			<csw>http://catalog.usgin.org/geothermal/csw</csw>
 			<csw>http://catalog.usgin.org/geoportal/csw</csw>
 			<csw>http://polar.geodacenter.org:9080/geonetwork/srv/eng/csw</csw>
 		</services>
